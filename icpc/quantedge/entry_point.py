@@ -1,5 +1,6 @@
 import os
 import json
+from urllib import response
 import pandas as pd
 
 def entrypoint(request_file_path: str):
@@ -7,19 +8,82 @@ def entrypoint(request_file_path: str):
         request = json.load(f)
 
     response = perform_main_business_logic(request)
+    print("result response length", len(response))
 
     with open("response.json", "w") as outfile:
-        json.dump(response, outfile, indent=4)
+        json.dump(response, outfile, indent=2)
 
-def perform_main_business_logic(input_request):
-    print(input_request)
-    data = {
-        "name": "sathiyajith",
-        "rollno": 56,
-        "cgpa": 8.6,
-        "phonenumber": "9976770500"
-    }
-    return data
+
+
+def month_diff(date1, date2):
+    # date 1 is transaction date, date 2 is expire date
+    y1 = int(date1[:4])
+    m1 = int(date1[5:7])
+    y2 = int(date2[:4])
+    m2 = int(date2[5:7])
+    return (y2 - y1) * 12 + (m2 - m1)
+
+
+def calc_quantity(securities, item):
+    res = 0
+    raw_quantity = float(item["quantity"])
+    security_obj =  securities[item["security_code"]]
+
+    if item["asset_class"] == "mcc":
+        if security_obj["commodity_1"] == "CRD":
+            res = raw_quantity
+        else:
+            res = raw_quantity / float(security_obj["swap_rate"])
+    else: # laf
+        num_month = month_diff(item["date"], security_obj["expiry"])
+        res = raw_quantity * num_month
+
+    return res
+
+
+def build_portifolio(transactions, securities, request):
+    dic = {}
+    trans = transactions[transactions["date"] <= request["date"]] # todo remove [:3]
+
+    for idx, item in trans.iterrows():
+        if item["portfolio_code"] == request["portfolio_code"]: 
+            item_name = item["security_code"] + ":" + item["broker_code"]
+            if item_name not in dic:
+                dic[item_name] = calc_quantity(securities, item)
+            else:
+                dic[item_name] += calc_quantity(securities, item)
+    return dic
+    
+    
+
+def build_response(dic, request, securities):
+    response = []
+    for key, val in dic.items():
+        security_code, broker_code = key.split(":")
+        obj = {}
+        obj["date"] = request["date"]
+        obj["security"] = securities[security_code]
+        obj["broker_code"] = broker_code
+        obj["quantity"] = val
+        response.append(obj)
+    return response
+
+
+def perform_main_business_logic(request):
+    transactions = pd.read_csv("data/transactions.csv")
+    with open("data/securities.json", 'r') as f: 
+        securities = json.load(f)
+
+    if request["portfolio_code"] == "RIFR":
+        BHSL_obj = build_portifolio(transactions, securities, request)
+        # finish aggregation
+    
+    else:
+        single_obj = build_portifolio(transactions, securities, request)
+        response = build_response(single_obj, request, securities)
+        return response
+
+
 
 
 if __name__ == "__main__":
