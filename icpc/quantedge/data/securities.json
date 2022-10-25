@@ -325,7 +325,7 @@
     "security_code": "TE_2022-12-01",
     "asset_class": "laf",
     "underlying": "TEA",
-    "expiry": "2022-12-01"
+    "expiry": "2022-12-01" 
   },
   "CO_2022-03-01": {
     "security_code": "CO_2022-03-01",

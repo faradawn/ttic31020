@@ -3,7 +3,7 @@
   { "portfolio_code": "BLSH", "description": "BuyLowSellHigh" },
   { "portfolio_code": "ITFI", "description": "ItchyFingers" },
   { "portfolio_code": "CORE", "description": "Core" },
-  {
+  { 
     "portfolio_code": "RIFR",
     "description": "RiskFree",
     "children": ["BHSL", "BLSH"],

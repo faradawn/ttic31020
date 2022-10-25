@@ -4,7 +4,7 @@
     "security": {
       "security_code": "BRKCRD2022-03-01",
       "asset_class": "mcc",
-      "commodity_1": "BRK",
+      "commodity_1": "BRK", 
       "commodity_2": "CRD",
       "swap_rate": 20.0,
       "expiry": "2022-03-01"
