@@ -40,10 +40,19 @@ def calc_quantity(securities, item):
 
     return res
 
+def merge():
 
 def build_portifolio(transactions, securities, request):
+    if request["portfolio_code"] has children:
+        new_req_1 = {request["date"], protiole["children"][0]}
+        child_1 = build_portifolio((transactions, securities, new_req_1)
+        new_req_2 = {request["date"], protiole["children"][0]}
+        child_2 = build_portifolio((transactions, securities, new_req_1)
+
+        return merge(child_1, child_2, op)
+
     dic = {}
-    trans = transactions[transactions["date"] <= request["date"]] # todo remove [:3]
+    trans = transactions[transactions["date"] <= request["date"]]
 
     for idx, item in trans.iterrows():
         if item["portfolio_code"] == request["portfolio_code"]: 
@@ -73,9 +82,24 @@ def perform_main_business_logic(request):
     transactions = pd.read_csv("data/transactions.csv")
     with open("data/securities.json", 'r') as f: 
         securities = json.load(f)
+    with open("data/protifolios.json", 'r') as f: 
+        portifolios = json.load(f)
+
+    
+    # generalize 
+    for item in portifolios:
+        if item["children"]:
+            arr_port = []
+            while item["children"][1]["chidren"]:
+                arr_port.append()
+            child_one = build_portifolio(transactions, securities, request) # build a simple port
+
 
     if request["portfolio_code"] == "RIFR":
         BHSL_obj = build_portifolio(transactions, securities, request)
+        BLSH = build_portifolio(transactions, securities, request)
+        if operation is add:
+            # row
         # finish aggregation
     
     else:
