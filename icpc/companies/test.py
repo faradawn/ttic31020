@@ -1,10 +1,10 @@
 from sympy import *
 
-a = symbols('a')
+a,b,c,e,f,g = symbols('a,b,c,e,f,g')
 
-m1 = Matrix([[1,0,a],[0,1,0],[0,0,1]])
-m2 = Matrix([[1,0,-a],[0,1,0],[0,0,1]])
+m1 = Matrix([[a,e,f],[0,b,g],[0,0,c]])
+I = Matrix([[1,0,0],[0,1,0],[0,0,2]])
+m2 = Matrix([[a,e,f],[0,b,g],[0,0,c]])
 
-print(m1**-1)
-
-pretty_print(m1**-1)
+pretty_print(m1 ** -1)
+pretty_print((m1 ** -1) * I * m1)
