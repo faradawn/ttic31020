@@ -7,10 +7,10 @@ def load_data(dataset):
     if dataset2 == 'kaggle':
         dataset='Te'
 
-    X = np.load('./x'+dataset+'.npy')
+    X = np.load('./data/x'+dataset+'.npy')
     N = X.shape[0]
     if dataset2 != 'kaggle':
-        Y = np.load('./y'+dataset+'.npy')
+        Y = np.load('./data/y'+dataset+'.npy')
         return X, Y
     else:
         return X
