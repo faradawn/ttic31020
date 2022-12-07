@@ -27,3 +27,9 @@ jupyter notebook --no-browser --port=8888
 # localhost
 ssh -i ~/.ssh/chameleon-1.pem -NL localhost:1234:localhost:8888 cc29.114.109.75
 ```
+
+## Compile Advent of Code 
+```
+cd ./ttic31020/icpc/aoc
+g++ -Wall -std=c++11 day07/day7.cpp; ./a.out
+```
