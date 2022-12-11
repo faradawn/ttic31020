@@ -62,7 +62,7 @@ int get_mod(){
     return mod;
  }
 
-void part1(int &round, map<int, vector<long long>> &items, map<int,int> &count, int mod, string part){
+void do_round(int &round, map<int, vector<long long>> &items, map<int,int> &count, int mod, string part){
     std::ifstream myfile ("day11/input1.txt");
     std::string myline;
     int monkey_id = 0;
@@ -132,7 +132,7 @@ void part1(int &round, map<int, vector<long long>> &items, map<int,int> &count, 
         int second_monkey = stoi(line);
 
         for(long i : items[monkey_id]){
-            long worry = (part == "part1") ? i / 3 : i % mod;
+            long worry = (part == "do_round") ? i / 3 : i % mod;
             count[monkey_id] ++;
             if(worry % divisor == 0){
                 items[first_monkey].push_back(worry);
@@ -154,7 +154,7 @@ int main(){
     int mod = get_mod();
     
     for(round = 1; round <= 10000; round++){
-        part1(round, items, count, mod, "part2");    
+        do_round(round, items, count, mod, "part2");    
         if(round == 1 || round == 20 || round == 1000){
             cout << "=== After round " << round << endl; 
             for(auto &it : count)
