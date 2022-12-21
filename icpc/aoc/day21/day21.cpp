@@ -18,6 +18,9 @@ using namespace std;
     Equation solver: https://www.mathpapa.com/simplify-calculator/
     cout.precision(18);
     cout << (double) 20753680468292344 / (double) 5577;
+
+    part1, 1 h
+    part2, 1.5 h
 */
 
 vector<string> split_str(string s, string delimiter){
@@ -83,11 +86,10 @@ long post_order(Node* root){
         return post_order(root->left) - post_order(root->right);
     else if(root->op == "/")
         return post_order(root->left) / post_order(root->right);
-    else if(root->op == "=")
-        return post_order(root->left) - post_order(root->right);
-    else
-        cout << "WARN: unrecognized op " << root->op << endl;
-    return -999;
+    else {
+        cout << "ERROR: unrecognized op " << root->op << endl;
+        return -666;
+    }
 }
 
 /* Build expression */
