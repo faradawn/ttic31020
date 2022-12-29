@@ -160,7 +160,7 @@ int main(){
     }
 
     // start simulation 
-
+    print_matrix(matrix);
 
 
 

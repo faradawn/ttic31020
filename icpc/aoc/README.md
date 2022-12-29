@@ -1,5 +1,17 @@
 # Nice Advent of Code Repositories
 
+### AOC Calendar
+- Day 16: Opening Valves. (Part 1, Weighted DFS. Part 2, split into two disjoint sets to run me and elephant).
+- Day 17 (x): Tetris. (Part 1: simulate.)
+- Day 18: Lavadroplet surface area (Part 1, BFS from every drop. Part 2. BFS from air).
+- Day 19: Build geode robots. (Part 1, DFS with memo and stop when exceed resource needed. Part 2, 32 minutes).
+- Day 20: Rotate elements in array. (Part 1, pop and insert index. Part 2, multiply.)
+- Day 21: Build expression tree. (Part 1, sum two leaves. Part 2, print expression and mathpapa.)
+- Day 22: 2D and 3D Wrap around cube, (Part 1, 2D wrap around. Part 2, 3D wrap around).
+- Day 23: Move elves in 8 directions. (Part 1, simulate. Part 2, same and count first time stop moving.)
+- Day 24 (x): Travel through the moving billizard. (Part 1, BFS, how to memorize the board.)
+- Day 25 (x): How bollons
+
 ## AOC Solution Repo
 - [Reddit](https://www.reddit.com/r/adventofcode/)
 - [C++ | split string and clock](https://github.com/rogue-kitten/aoc-22/blob/main/Days/Day15/part2.cpp)
@@ -15,8 +27,6 @@
 
 
 ## C++
-
-
 - Set print precision
 ```c++
 cout.precision(18);
